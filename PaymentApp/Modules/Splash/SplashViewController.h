@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SplashViewController.h
 //  PaymentApp
 //
 //  Created by Samuel on 1/31/19.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface SplashViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
