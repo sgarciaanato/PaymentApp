@@ -1,5 +1,5 @@
 //
-//  CardIssuersViewController.h
+//  InstallmentViewController.h
 //  PaymentApp
 //
 //  Created by Samuel on 2/1/19.
@@ -9,15 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "NetworkingManager.h"
-#import "PaymentMethod.h"
-#import "CardIssuer.h"
-#import "InstallmentViewController.h"
+#import "Installment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CardIssuersViewController : UITableViewController
+@interface InstallmentViewController : UIViewController
 
 @property (strong, nonatomic) PaymentMethod *selectedPaymentMethod;
+@property (strong, nonatomic) CardIssuer *selectedCardIssuer;
 
 @end
 

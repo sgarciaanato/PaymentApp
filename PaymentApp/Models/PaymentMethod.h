@@ -35,9 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Setting : NSObject
 
-@property (nonatomic) CardNumber *card_number;
-@property (nonatomic) Bin *bin;
-@property (nonatomic) SecurityCode *security_code;
+@property (strong, nonatomic) CardNumber *card_number;
+@property (strong, nonatomic) Bin *bin;
+@property (strong, nonatomic) SecurityCode *security_code;
 
 -(id)initWithDictionary:(NSDictionary*)data;
 
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSString *secure_thumbnail;
 @property (strong,nonatomic) NSString *thumbnail;
 @property (strong,nonatomic) NSString *deferred_capture;
-@property (nonatomic) NSArray<Setting *> *settings;
+@property (strong,nonatomic) NSArray<Setting *> *settings;
 @property (strong,nonatomic) NSArray<NSString *> *additional_info_needed;
 @property (strong,nonatomic) NSNumber *min_allowed_amount;
 @property (strong,nonatomic) NSNumber *max_allowed_amount;

@@ -7,9 +7,6 @@
 //
 
 #import "CardIssuersViewController.h"
-#import "NetworkingManager.h"
-#import "CardIssuer.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface CardIssuersViewController ()
 
@@ -52,6 +49,13 @@ NSString * cardIssuerCell = @"cardIssuerCell";
     return self.cardIssuers.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selectedCardIssuer = [self.cardIssuers objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"goToInstallment" sender:nil];
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cardIssuerCell forIndexPath:indexPath];
@@ -72,10 +76,15 @@ NSString * cardIssuerCell = @"cardIssuerCell";
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"goToInstallment"]) {
+        
+        InstallmentViewController *installmentViewController = segue.destinationViewController;
+        installmentViewController.selectedPaymentMethod = self.selectedPaymentMethod;
+        installmentViewController.selectedCardIssuer = self.selectedCardIssuer;
+        
+        return;
+    }
 }
 
 

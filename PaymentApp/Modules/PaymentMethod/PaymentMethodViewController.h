@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "NetworkingManager.h"
+#import "PaymentMethod.h"
+#import "CardIssuersViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

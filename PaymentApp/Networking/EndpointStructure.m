@@ -36,6 +36,13 @@
     return structure;
 }
 
++(EndpointStructure *) getInstallment {
+    EndpointStructure *structure = [[EndpointStructure alloc] init];
+    structure.endpoint = @"payment_methods/installments";
+    structure.method = @"GET";
+    return structure;
+}
+
 -(NSString *) getStringEndpoint : (NSDictionary *) parameters {
     
     NSString *urlVars = [[NSString alloc] initWithFormat:@"?public_key=%@", self.public_key];

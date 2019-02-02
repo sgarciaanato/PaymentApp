@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EndpointStructure.h"
 #import "PaymentMethod.h"
 #import "CardIssuer.h"
+#import "Installment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void) getPaymentMethod : (NSDictionary *) dictionary onSuccess : (void (^)(NSArray<PaymentMethod*> *, NSError *)) onSuccess;
 +(void) getCardIssuers : (NSDictionary *) dictionary onSuccess : (void (^)(NSArray<CardIssuer*> *, NSError *)) onSuccess;
++(void) getInstallment : (NSDictionary *) dictionary onSuccess : (void (^)(Installment*, NSError *)) onSuccess;
 
 @end
 

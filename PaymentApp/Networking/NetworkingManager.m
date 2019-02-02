@@ -7,9 +7,6 @@
 //
 
 #import "NetworkingManager.h"
-#import "EndpointStructure.h"
-#import "PaymentMethod.h"
-#import "CardIssuer.h"
 
 @implementation NetworkingManager
 
@@ -51,32 +48,59 @@
     EndpointStructure *endpoint = [EndpointStructure getCardIssuers];
     
     [[NSURLSession.sharedSession dataTaskWithRequest: [NetworkingManager getRequest : endpoint withDictionary: dictionary] completionHandler: ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error){
-
+        
         if (error) {
             NSLog(@"%@", error.localizedDescription);
             return;
         }
         
-        NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-
         NSError *err;
         NSArray *arrayCardIssuer = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
-
+        
         if (err) {
             NSLog(@"%@", err.localizedDescription);
             return;
         }
-
+        
         NSMutableArray<CardIssuer*> *cardIssuers = [[NSMutableArray alloc] init];
-
+        
         for (NSDictionary *dictionaryCardIssuer in arrayCardIssuer){
             CardIssuer *cardIssuer = [[CardIssuer alloc] initWithDictionary:dictionaryCardIssuer];
             [cardIssuers addObject:cardIssuer];
         }
-
+        
         onSuccess(cardIssuers, err);
+        
+        
+    }] resume];
+    
+}
 
-
++(void) getInstallment : (NSDictionary *) dictionary onSuccess : (void (^)(Installment*, NSError *)) onSuccess{
+    
+    EndpointStructure *endpoint = [EndpointStructure getInstallment];
+    
+    [[NSURLSession.sharedSession dataTaskWithRequest: [NetworkingManager getRequest : endpoint withDictionary: dictionary] completionHandler: ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error){
+        
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+            return;
+        }
+        
+        NSError *err;
+        NSArray *jsonCardIssuer = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+        
+        if (err) {
+            NSLog(@"%@", err.localizedDescription);
+            return;
+        }
+        
+        
+        Installment *installment = [[Installment alloc] initWithDictionary:jsonCardIssuer.firstObject];
+        
+        onSuccess(installment, err);
+        
+        
     }] resume];
     
 }

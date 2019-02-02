@@ -145,10 +145,57 @@
                             <outlet property="delegate" destination="Eb4-Kg-bIb" id="tD3-Jk-Bvc"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="0eF-SZ-C3g" kind="show" identifier="goToInstallment" id="LZo-2V-1tv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aJ0-Ue-dw5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3742" y="-412"/>
+        </scene>
+        <!--Installment View Controller-->
+        <scene sceneID="EK6-md-KIp">
+            <objects>
+                <viewController id="0eF-SZ-C3g" customClass="InstallmentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cox-pa-BFK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hgv-Ba-eGj">
+                                <rect key="frame" x="0.0" y="264" width="375" height="403"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="installmentCell" id="r7c-mz-gah">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r7c-mz-gah" id="9WM-69-KF0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="0eF-SZ-C3g" id="4iW-np-t7h"/>
+                                    <outlet property="delegate" destination="0eF-SZ-C3g" id="jKB-WS-y3j"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4wg-Xv-jVm" firstAttribute="trailing" secondItem="Hgv-Ba-eGj" secondAttribute="trailing" id="Mag-QU-cD0"/>
+                            <constraint firstItem="Hgv-Ba-eGj" firstAttribute="top" secondItem="4wg-Xv-jVm" secondAttribute="top" constant="200" id="j4z-7V-2tt"/>
+                            <constraint firstItem="Hgv-Ba-eGj" firstAttribute="leading" secondItem="4wg-Xv-jVm" secondAttribute="leading" id="sDi-CG-1qM"/>
+                            <constraint firstItem="4wg-Xv-jVm" firstAttribute="bottom" secondItem="Hgv-Ba-eGj" secondAttribute="bottom" id="tnF-qB-GGd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4wg-Xv-jVm"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Hgv-Ba-eGj" id="1FF-GL-hlb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ox-lY-6hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4446" y="-412"/>
         </scene>
     </scenes>
     <resources>

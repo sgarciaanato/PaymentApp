@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(EndpointStructure *) getPaymentMethod;
 +(EndpointStructure *) getCardIssuers;
++(EndpointStructure *) getInstallment;
 -(NSString *) getStringEndpoint : (NSDictionary *) parameters;
 
 @end

@@ -21,6 +21,8 @@
 		7E4C9BA72204A04500D42EF4 /* PaymentMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C9BA62204A04500D42EF4 /* PaymentMethod.m */; };
 		7E4C9BAE2204D81100D42EF4 /* CardIssuersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C9BAD2204D81100D42EF4 /* CardIssuersViewController.m */; };
 		7E4C9BB12204D99D00D42EF4 /* CardIssuer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C9BB02204D99C00D42EF4 /* CardIssuer.m */; };
+		7E800942220516B900DE71C7 /* Installment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E800941220516B900DE71C7 /* Installment.m */; };
+		7E80094922051DC900DE71C7 /* InstallmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E80094822051DC900DE71C7 /* InstallmentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,10 @@
 		7E4C9BAD2204D81100D42EF4 /* CardIssuersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardIssuersViewController.m; sourceTree = "<group>"; };
 		7E4C9BAF2204D99C00D42EF4 /* CardIssuer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardIssuer.h; sourceTree = "<group>"; };
 		7E4C9BB02204D99C00D42EF4 /* CardIssuer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardIssuer.m; sourceTree = "<group>"; };
+		7E800940220516B900DE71C7 /* Installment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Installment.h; sourceTree = "<group>"; };
+		7E800941220516B900DE71C7 /* Installment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Installment.m; sourceTree = "<group>"; };
+		7E80094722051DC900DE71C7 /* InstallmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstallmentViewController.h; sourceTree = "<group>"; };
+		7E80094822051DC900DE71C7 /* InstallmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstallmentViewController.m; sourceTree = "<group>"; };
 		C4557CDBE98C0C8028E8AF0B /* libPods-PaymentApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PaymentApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -120,6 +126,7 @@
 		7E4C9B832203DE8500D42EF4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7E80094322051D1D00DE71C7 /* Installment */,
 				7E4C9BAB2204D7E600D42EF4 /* CardIssuer */,
 				7E4C9BA022047CEE00D42EF4 /* PaymentMethod */,
 				7E4C9B92220461F700D42EF4 /* PaymentAmmount */,
@@ -173,6 +180,8 @@
 				7E4C9BA62204A04500D42EF4 /* PaymentMethod.m */,
 				7E4C9BAF2204D99C00D42EF4 /* CardIssuer.h */,
 				7E4C9BB02204D99C00D42EF4 /* CardIssuer.m */,
+				7E800940220516B900DE71C7 /* Installment.h */,
+				7E800941220516B900DE71C7 /* Installment.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -184,6 +193,15 @@
 				7E4C9BAD2204D81100D42EF4 /* CardIssuersViewController.m */,
 			);
 			path = CardIssuer;
+			sourceTree = "<group>";
+		};
+		7E80094322051D1D00DE71C7 /* Installment */ = {
+			isa = PBXGroup;
+			children = (
+				7E80094722051DC900DE71C7 /* InstallmentViewController.h */,
+				7E80094822051DC900DE71C7 /* InstallmentViewController.m */,
+			);
+			path = Installment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,8 +308,10 @@
 				7E4C9B6C2203DD7200D42EF4 /* AppDelegate.m in Sources */,
 				7E4C9B7D2203DD7300D42EF4 /* main.m in Sources */,
 				7E4C9B872203DEA000D42EF4 /* SplashViewController.m in Sources */,
+				7E80094922051DC900DE71C7 /* InstallmentViewController.m in Sources */,
 				7E4C9BB12204D99D00D42EF4 /* CardIssuer.m in Sources */,
 				7E4C9B9F2204772700D42EF4 /* PaymentAmmountViewController.m in Sources */,
+				7E800942220516B900DE71C7 /* Installment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

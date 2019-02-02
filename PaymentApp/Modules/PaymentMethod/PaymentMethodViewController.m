@@ -7,10 +7,6 @@
 //
 
 #import "PaymentMethodViewController.h"
-#import "NetworkingManager.h"
-#import "PaymentMethod.h"
-#import "CardIssuersViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface PaymentMethodViewController ()
 
