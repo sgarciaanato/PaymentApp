@@ -27,7 +27,11 @@ NSString * paymentMethodCell = @"paymentMethodCell";
     
     NSDictionary *parameters = @{};
     
+    [self showLoading];
+    
     [NetworkingManager getPaymentMethod : parameters onSuccess : ^(NSArray<PaymentMethod*> *paymentMethods, NSError *error) {
+        
+        [self hideLoading];
         
         if (error){
             NSLog(@"Error %@", error.localizedDescription);
@@ -78,6 +82,7 @@ NSString * paymentMethodCell = @"paymentMethodCell";
         
         CardIssuersViewController *cardIssuersViewController = segue.destinationViewController;
         cardIssuersViewController.selectedPaymentMethod = self.selectedPaymentMethod;
+        cardIssuersViewController.paymentAmmount = self.paymentAmmount;
         
         return;
     }

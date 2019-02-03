@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22B93ACC408B55AA1A3E2B23 /* libPods-PaymentApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4557CDBE98C0C8028E8AF0B /* libPods-PaymentApp.a */; };
+		7E4BE4352206575400302243 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BE4342206575400302243 /* OrderDetailViewController.m */; };
 		7E4C9B6C2203DD7200D42EF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C9B6B2203DD7200D42EF4 /* AppDelegate.m */; };
 		7E4C9B722203DD7200D42EF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E4C9B702203DD7200D42EF4 /* Main.storyboard */; };
 		7E4C9B772203DD7300D42EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E4C9B762203DD7300D42EF4 /* Assets.xcassets */; };
@@ -23,11 +24,15 @@
 		7E4C9BB12204D99D00D42EF4 /* CardIssuer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C9BB02204D99C00D42EF4 /* CardIssuer.m */; };
 		7E800942220516B900DE71C7 /* Installment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E800941220516B900DE71C7 /* Installment.m */; };
 		7E80094922051DC900DE71C7 /* InstallmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E80094822051DC900DE71C7 /* InstallmentViewController.m */; };
+		7EAC54A922066CF600C367F1 /* UIViewController+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EAC54A822066CF600C367F1 /* UIViewController+Category.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B9640873C8514CF488CB987 /* Pods-PaymentApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaymentApp.debug.xcconfig"; path = "Target Support Files/Pods-PaymentApp/Pods-PaymentApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4DAF1BA4B6B8B7E0A3E28282 /* Pods-PaymentApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PaymentApp.release.xcconfig"; path = "Target Support Files/Pods-PaymentApp/Pods-PaymentApp.release.xcconfig"; sourceTree = "<group>"; };
+		7E4BE4332206575400302243 /* OrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
+		7E4BE4342206575400302243 /* OrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
+		7E4BE43922066C4800302243 /* UIViewController+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
 		7E4C9B672203DD7200D42EF4 /* PaymentApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PaymentApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E4C9B6A2203DD7200D42EF4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7E4C9B6B2203DD7200D42EF4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,6 +61,8 @@
 		7E800941220516B900DE71C7 /* Installment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Installment.m; sourceTree = "<group>"; };
 		7E80094722051DC900DE71C7 /* InstallmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstallmentViewController.h; sourceTree = "<group>"; };
 		7E80094822051DC900DE71C7 /* InstallmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InstallmentViewController.m; sourceTree = "<group>"; };
+		7EAC54A722066CF600C367F1 /* UIViewController+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Category.h"; sourceTree = "<group>"; };
+		7EAC54A822066CF600C367F1 /* UIViewController+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Category.m"; sourceTree = "<group>"; };
 		C4557CDBE98C0C8028E8AF0B /* libPods-PaymentApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PaymentApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -88,6 +95,33 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7E4BE4322206573F00302243 /* OrderDetail */ = {
+			isa = PBXGroup;
+			children = (
+				7E4BE4332206575400302243 /* OrderDetailViewController.h */,
+				7E4BE4342206575400302243 /* OrderDetailViewController.m */,
+			);
+			path = OrderDetail;
+			sourceTree = "<group>";
+		};
+		7E4BE43622066BEF00302243 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7E4BE43722066BF300302243 /* Extension */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7E4BE43722066BF300302243 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7E4BE43922066C4800302243 /* UIViewController+Extension.h */,
+				7EAC54A722066CF600C367F1 /* UIViewController+Category.h */,
+				7EAC54A822066CF600C367F1 /* UIViewController+Category.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		7E4C9B5E2203DD7200D42EF4 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +143,7 @@
 		7E4C9B692203DD7200D42EF4 /* PaymentApp */ = {
 			isa = PBXGroup;
 			children = (
+				7E4BE43622066BEF00302243 /* Utils */,
 				7E4C9BA42204A03200D42EF4 /* Models */,
 				7E4C9B882203E1DC00D42EF4 /* Networking */,
 				7E4C9B832203DE8500D42EF4 /* Modules */,
@@ -126,6 +161,7 @@
 		7E4C9B832203DE8500D42EF4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7E4BE4322206573F00302243 /* OrderDetail */,
 				7E80094322051D1D00DE71C7 /* Installment */,
 				7E4C9BAB2204D7E600D42EF4 /* CardIssuer */,
 				7E4C9BA022047CEE00D42EF4 /* PaymentMethod */,
@@ -300,10 +336,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EAC54A922066CF600C367F1 /* UIViewController+Category.m in Sources */,
 				7E4C9B912203EC8E00D42EF4 /* NetworkingManager.m in Sources */,
 				7E4C9BAE2204D81100D42EF4 /* CardIssuersViewController.m in Sources */,
 				7E4C9BA72204A04500D42EF4 /* PaymentMethod.m in Sources */,
 				7E4C9B9C220473BB00D42EF4 /* EndpointStructure.m in Sources */,
+				7E4BE4352206575400302243 /* OrderDetailViewController.m in Sources */,
 				7E4C9BA322047CFE00D42EF4 /* PaymentMethodViewController.m in Sources */,
 				7E4C9B6C2203DD7200D42EF4 /* AppDelegate.m in Sources */,
 				7E4C9B7D2203DD7300D42EF4 /* main.m in Sources */,

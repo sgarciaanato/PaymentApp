@@ -11,10 +11,12 @@
 #import "NetworkingManager.h"
 #import "PaymentMethod.h"
 #import "CardIssuersViewController.h"
+#import "UIViewController+Extension.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PaymentMethodViewController : UITableViewController
+@property (strong, nonatomic) NSString *paymentAmmount;
 
 @end
 

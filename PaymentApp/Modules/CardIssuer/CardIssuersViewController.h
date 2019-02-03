@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CardIssuersViewController : UITableViewController
 
 @property (strong, nonatomic) PaymentMethod *selectedPaymentMethod;
+@property (strong, nonatomic) NSString *paymentAmmount;
 
 @end
 

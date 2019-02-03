@@ -28,13 +28,21 @@ NSString * cardIssuerCell = @"cardIssuerCell";
     
     NSDictionary *parameters = @{@"payment_method_id": self.selectedPaymentMethod.id};
     
+    [self showLoading];
+    
     [NetworkingManager getCardIssuers : parameters onSuccess : ^(NSArray<CardIssuer*> *cardIssuers, NSError *error) {
+        
+        [self hideLoading];
         
         if (error){
             NSLog(@"Error %@", error.localizedDescription);
         }
         
         self.cardIssuers = cardIssuers;
+        
+        if (self.cardIssuers.count <= 0){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -82,6 +90,7 @@ NSString * cardIssuerCell = @"cardIssuerCell";
         InstallmentViewController *installmentViewController = segue.destinationViewController;
         installmentViewController.selectedPaymentMethod = self.selectedPaymentMethod;
         installmentViewController.selectedCardIssuer = self.selectedCardIssuer;
+        installmentViewController.paymentAmmount = self.paymentAmmount;
         
         return;
     }

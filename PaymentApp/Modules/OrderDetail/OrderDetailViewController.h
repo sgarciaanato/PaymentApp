@@ -1,24 +1,24 @@
 //
-//  InstallmentViewController.h
+//  OrderDetailViewController.h
 //  PaymentApp
 //
-//  Created by Samuel on 2/1/19.
+//  Created by Samuel on 2/2/19.
 //  Copyright © 2019 MercadoLibre. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "NetworkingManager.h"
+#import "PaymentMethodViewController.h"
 #import "Installment.h"
-#import "PaymentAmmountViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface InstallmentViewController : UIViewController
+@interface OrderDetailViewController : UIViewController
 
 @property (strong, nonatomic) PaymentMethod *selectedPaymentMethod;
 @property (strong, nonatomic) CardIssuer *selectedCardIssuer;
 @property (strong, nonatomic) NSString *paymentAmmount;
+@property (strong, nonatomic) PayerCost *selectedPayerCost; 
 
 @end
 

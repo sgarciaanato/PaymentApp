@@ -107,7 +107,6 @@
 
 +(NSMutableURLRequest *) getRequest : (EndpointStructure *) endpoint withDictionary : (NSDictionary * ) dictionary{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: [endpoint getStringEndpoint : dictionary]]];
-    NSLog([endpoint getStringEndpoint:dictionary]);
     [request setHTTPMethod: endpoint.method];
     
     return request;

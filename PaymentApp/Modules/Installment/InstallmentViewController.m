@@ -26,18 +26,25 @@ NSString * installmentCell = @"installmentCell";
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier: installmentCell];
     
     NSDictionary *parameters = @{
-                                 @"amount":@"100",
+                                 @"amount":self.paymentAmmount,
                                  @"payment_method_id": self.selectedPaymentMethod.id,
                                  @"issuer.id":self.selectedCardIssuer.id
                                  };
+    [self showLoading];
     
     [NetworkingManager getInstallment : parameters onSuccess : ^(Installment *installment, NSError *error) {
+         
+        [self hideLoading];
         
         if (error){
             NSLog(@"Error %@", error.localizedDescription);
         }
         
         self.installment = installment;
+        
+        if (self.installment.payer_costs.count <= 0){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -46,8 +53,29 @@ NSString * installmentCell = @"installmentCell";
     }];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"unWindToPaymentAmmount"]) {
+        
+        PaymentAmmountViewController *paymentAmmountViewController = segue.destinationViewController;
+        paymentAmmountViewController.selectedPaymentMethod = self.selectedPaymentMethod;
+        paymentAmmountViewController.selectedCardIssuer = self.selectedCardIssuer;
+        paymentAmmountViewController.paymentAmmount = self.paymentAmmount;
+        paymentAmmountViewController.selectedPayerCost = self.selectedPayerCost;
+
+        return;
+    }
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.installment.payer_costs.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selectedPayerCost = self.installment.payer_costs[indexPath.row];
+    [self performSegueWithIdentifier:@"unWindToPaymentAmmount" sender:nil];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
