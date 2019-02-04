@@ -11,6 +11,7 @@
 #import "NetworkingManager.h"
 #import "Installment.h"
 #import "PaymentAmmountViewController.h"
+#import "Order.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) PaymentMethod *selectedPaymentMethod;
 @property (strong, nonatomic) CardIssuer *selectedCardIssuer;
 @property (strong, nonatomic) NSString *paymentAmmount;
+@property (strong, nonatomic) Order *currentOrder;
 
 @end
 

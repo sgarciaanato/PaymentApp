@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSNumber *total_amount;
 
 -(id)initWithDictionary:(NSDictionary*)data;
+-(NSMutableDictionary *) getDictionary;
 
 @end
 
@@ -38,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSArray<PayerCost *> *payer_costs;
 
 -(id)initWithDictionary:(NSDictionary*)data;
+-(NSMutableDictionary *) getDictionary;
 
 @end
 

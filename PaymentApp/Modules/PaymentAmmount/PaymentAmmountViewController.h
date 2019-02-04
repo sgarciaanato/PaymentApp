@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "PaymentMethodViewController.h"
+#import "OrderDetailViewController.h"
+#import "OrderManager.h"
 #import "Installment.h"
+#import "Order.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PaymentAmmountViewController : UIViewController
 
-@property (strong, nonatomic) PaymentMethod *selectedPaymentMethod;
-@property (strong, nonatomic) CardIssuer *selectedCardIssuer;
-@property (strong, nonatomic) NSString *paymentAmmount; 
-@property (strong, nonatomic) PayerCost *selectedPayerCost; 
+@property (strong, nonatomic) NSString *paymentAmmount;
+@property (strong, nonatomic) Order *currentOrder;
 
 @end
 

@@ -20,6 +20,17 @@
     return self;
 }
 
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:self.validation forKey:@"validation"];
+    [dictionary setValue:self.length forKey:@"length"];
+    
+    return dictionary;
+    
+}
+
 @end
 
 @implementation Bin
@@ -30,9 +41,19 @@
     if (self) {
         self.pattern = [data objectForKey:@"pattern"];
         self.installments_pattern = [data objectForKey:@"installments_pattern"];
-        self.exclusion_pattern = [data objectForKey:@"exclusion_pattern"];
     }
     return self;
+}
+
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:self.pattern forKey:@"pattern"];
+    [dictionary setValue:self.installments_pattern forKey:@"installments_pattern"];
+    
+    return dictionary;
+    
 }
 
 @end
@@ -50,6 +71,18 @@
     return self;
 }
 
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:self.length forKey:@"length"];
+    [dictionary setValue:self.card_location forKey:@"card_location"];
+    [dictionary setValue:self.mode forKey:@"mode"];
+    
+    return dictionary;
+    
+}
+
 @end
 
 @implementation Setting
@@ -63,6 +96,18 @@
         self.security_code = [[SecurityCode alloc] initWithDictionary : [data objectForKey:@"security_code"]];
     }
     return self;
+}
+
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:[self.card_number getDictionary] forKey:@"card_number"];
+    [dictionary setValue:[self.bin getDictionary] forKey:@"bin"];
+    [dictionary setValue:[self.security_code getDictionary] forKey:@"security_code"];
+    
+    return dictionary;
+    
 }
 
 @end
@@ -94,5 +139,31 @@
         }
         return self;
     }
+
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:self.id forKey:@"id"];
+    [dictionary setValue:self.name forKey:@"name"];
+    [dictionary setValue:self.payment_type_id forKey:@"payment_type_id"];
+    [dictionary setValue:self.secure_thumbnail forKey:@"secure_thumbnail"];
+    [dictionary setValue:self.thumbnail forKey:@"thumbnail"];
+    [dictionary setValue:self.deferred_capture forKey:@"deferred_capture"];
+    NSMutableArray <NSDictionary *> *arraySettings = [[NSMutableArray alloc] init];
+    for(Setting *setting in self.settings){
+        [arraySettings addObject:setting.getDictionary];
+    }
+    [dictionary setValue:arraySettings forKey:@"settings"];
+    [dictionary setValue:self.additional_info_needed forKey:@"additional_info_needed"];
+    [dictionary setValue:self.min_allowed_amount forKey:@"min_allowed_amount"];
+    [dictionary setValue:self.max_allowed_amount forKey:@"max_allowed_amount"];
+    [dictionary setValue:self.accreditation_time forKey:@"accreditation_time"];
+    [dictionary setValue:self.financial_institutions forKey:@"financial_institutions"];
+    [dictionary setValue:self.processing_modes forKey:@"processing_modes"];
+    
+    return dictionary;
+    
+}
 
 @end

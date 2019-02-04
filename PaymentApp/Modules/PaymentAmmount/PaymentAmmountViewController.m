@@ -9,7 +9,9 @@
 #import "PaymentAmmountViewController.h"
 
 @interface PaymentAmmountViewController ()
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UITextField *ammountTextField;
+@property (weak, nonatomic) IBOutlet UIButton *paymentButton;
 
 @end
 
@@ -19,26 +21,45 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [[self.containerView layer] setCornerRadius: 8];
+    [[self.paymentButton layer] setCornerRadius: 8];
+    [[self.paymentButton layer] setBorderWidth: 1];
+    [[self.paymentButton layer] setBorderColor: UIColor.lightGrayColor.CGColor];
+    
+    [self animateEntry];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 }
 
 - (IBAction)unwindToPaymentAmmountViewController:(UIStoryboardSegue *)unwindSegue{
-    NSLog(@"%@,%@,%@,%@",
-          self.paymentAmmount,
-          self.selectedPaymentMethod.id,
-          self.selectedCardIssuer.id,
-          self.selectedPayerCost.recommended_message);
     
     dispatch_async(dispatch_get_main_queue(), ^(void){
+        
+        [self saveOrder];
+        
         [self performSegueWithIdentifier:@"goToOrderDetail" sender:nil];
     });
     
 }
+
+-(void) saveOrder {
+    
+    [OrderManager storeOrder: self.currentOrder];
+
+}
+
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     
-    if ([identifier isEqualToString:@"goToPaymentMethod"] && ![self.ammountTextField.text  isEqual: @""] && self.ammountTextField.text.length > 0) {
-        return true;
+    if ([identifier isEqualToString:@"goToPaymentMethod"] && ([self.ammountTextField.text  isEqual: @""] || self.ammountTextField.text.length <= 0)) {
+        return false;
     }
-    return false;
+    if ([identifier isEqualToString:@"goToOrders"] && ([OrderManager getCurrentOrders].count <= 0)) {
+        return false;
+    }
+    return true;
 }
 
 #pragma mark - Navigation
@@ -55,16 +76,15 @@
         
         [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
         
+        self.ammountTextField.text = @"";
+        
         return;
     }
     
     if ([[segue identifier] isEqualToString:@"goToOrderDetail"]) {
         
-        PaymentAmmountViewController *paymentAmmountViewController = segue.destinationViewController;
-        paymentAmmountViewController.selectedPaymentMethod = self.selectedPaymentMethod;
-        paymentAmmountViewController.selectedCardIssuer = self.selectedCardIssuer;
-        paymentAmmountViewController.paymentAmmount = self.paymentAmmount;
-        paymentAmmountViewController.selectedPayerCost = self.selectedPayerCost;
+        OrderDetailViewController *orderDetailViewController = segue.destinationViewController;
+        orderDetailViewController.currentOrder = self.currentOrder;
         
         return;
     }

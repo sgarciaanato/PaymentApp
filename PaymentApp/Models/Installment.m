@@ -28,6 +28,24 @@
     return self;
 }
 
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:self.installments forKey:@"installments"];
+    [dictionary setValue:self.installment_rate forKey:@"installment_rate"];
+    [dictionary setValue:self.discount_rate forKey:@"discount_rate"];
+    [dictionary setValue:self.processing_modelabels forKey:@"processing_modelabels"];
+    [dictionary setValue:self.installment_rate_collector forKey:@"installment_rate_collector"];
+    [dictionary setValue:self.min_allowed_amount forKey:@"min_allowed_amount"];
+    [dictionary setValue:self.max_allowed_amount forKey:@"max_allowed_amount"];
+    [dictionary setValue:self.recommended_message forKey:@"recommended_message"];
+    [dictionary setValue:self.total_amount forKey:@"total_amount"];
+    
+    return dictionary;
+    
+}
+
 @end
 
 @implementation Installment
@@ -48,6 +66,26 @@
         self.payer_costs = payerCosts;
     }
     return self;
+}
+
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:self.payment_method_id forKey:@"payment_method_id"];
+    [dictionary setValue:self.payment_type_id forKey:@"payment_type_id"];
+    [dictionary setValue:self.issuer forKey:@"issuer"];
+    [dictionary setValue:self.processing_mode forKey:@"processing_mode"];
+    [dictionary setValue:self.merchant_account_id forKey:@"merchant_account_id"];
+    NSMutableArray <NSDictionary *> *arrayPayerCosts = [[NSMutableArray alloc] init];
+    for(PayerCost *payerCost in self.payer_costs){
+        [arrayPayerCosts addObject:payerCost.getDictionary];
+    }
+    [dictionary setValue:arrayPayerCosts forKey:@"settings"];
+    [dictionary setValue:self.payer_costs forKey:@"payer_costs"];
+    
+    return dictionary;
+    
 }
 
 @end

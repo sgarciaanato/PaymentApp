@@ -26,20 +26,21 @@
     [super viewDidLoad];
     [[self.containerView layer] setCornerRadius: 8];
     
-    [self.paymentAmmountLabel setText:[[NSString alloc] initWithFormat:@"%@ $",self.paymentAmmount]];
+    [self.paymentAmmountLabel setText:[[NSString alloc] initWithFormat:@"%@ $", self.currentOrder.paymentAmmount]];
     
-    [self.paymentMethodImageView sd_setImageWithURL:[NSURL URLWithString:self.selectedPaymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.paymentMethodImageView sd_setImageWithURL:[NSURL URLWithString:self.currentOrder.selectedPaymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
-    [self.paymentMethodLabel setText:self.selectedPaymentMethod.name];
+    [self.paymentMethodLabel setText:self.currentOrder.selectedPaymentMethod.name];
     
-    [self.cardIssuerImageView sd_setImageWithURL:[NSURL URLWithString:self.selectedCardIssuer.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.cardIssuerImageView sd_setImageWithURL:[NSURL URLWithString:self.currentOrder.selectedCardIssuer.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
-    [self.cardIssuerLabel setText:self.self.selectedCardIssuer.name];
-    [self.recommendedMessageLabel setText:self.selectedPayerCost.recommended_message];
+    [self.cardIssuerLabel setText:self.self.currentOrder.selectedCardIssuer.name];
+    [self.recommendedMessageLabel setText:self.currentOrder.selectedPayerCost.recommended_message];
     
 }
+
 - (IBAction)closePopUp:(UIButton *)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self dismissViewControllerAnimated:false completion:nil];
 }
 
 @end

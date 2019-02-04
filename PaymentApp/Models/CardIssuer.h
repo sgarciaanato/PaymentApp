@@ -17,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSString *secure_thumbnail;
 @property (strong,nonatomic) NSString *thumbnail;
 @property (strong,nonatomic) NSString *processing_mode;
-@property (strong,nonatomic) NSString *merchant_account_id;
 
 -(id)initWithDictionary:(NSDictionary*)data;
+-(NSMutableDictionary *) getDictionary;
 
 @end
 

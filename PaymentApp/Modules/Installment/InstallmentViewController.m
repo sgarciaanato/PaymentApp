@@ -12,6 +12,14 @@
 
 @property (strong, nonatomic) Installment *installment;
 @property (strong, nonatomic) PayerCost *selectedPayerCost;
+
+@property (weak, nonatomic) IBOutlet UILabel *paymentCostLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *paymentMethodImageView;
+@property (weak, nonatomic) IBOutlet UILabel *paymentMethodLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *cardIssuerImageView;
+@property (weak, nonatomic) IBOutlet UILabel *cardIssuerLabel;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -32,6 +40,15 @@ NSString * installmentCell = @"installmentCell";
                                  };
     [self showLoading];
     
+    [[self.tableView layer] setBorderWidth:1];
+    [[self.tableView layer] setBorderColor:UIColor.lightGrayColor.CGColor];
+    
+    [self.paymentCostLabel setText:[[NSString alloc] initWithFormat:@"%@ $",self.paymentAmmount]];
+    [self.paymentMethodImageView sd_setImageWithURL:[NSURL URLWithString:self.selectedPaymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.paymentMethodLabel setText:self.self.selectedPaymentMethod.name];
+    [self.cardIssuerImageView sd_setImageWithURL:[NSURL URLWithString:self.selectedCardIssuer.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.cardIssuerLabel setText:self.selectedCardIssuer.name];
+    
     [NetworkingManager getInstallment : parameters onSuccess : ^(Installment *installment, NSError *error) {
          
         [self hideLoading];
@@ -43,7 +60,9 @@ NSString * installmentCell = @"installmentCell";
         self.installment = installment;
         
         if (self.installment.payer_costs.count <= 0){
-            [self.navigationController popViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -57,10 +76,7 @@ NSString * installmentCell = @"installmentCell";
     if ([[segue identifier] isEqualToString:@"unWindToPaymentAmmount"]) {
         
         PaymentAmmountViewController *paymentAmmountViewController = segue.destinationViewController;
-        paymentAmmountViewController.selectedPaymentMethod = self.selectedPaymentMethod;
-        paymentAmmountViewController.selectedCardIssuer = self.selectedCardIssuer;
-        paymentAmmountViewController.paymentAmmount = self.paymentAmmount;
-        paymentAmmountViewController.selectedPayerCost = self.selectedPayerCost;
+        paymentAmmountViewController.currentOrder = self.currentOrder;
 
         return;
     }
@@ -74,6 +90,15 @@ NSString * installmentCell = @"installmentCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.selectedPayerCost = self.installment.payer_costs[indexPath.row];
+    
+    Order *order = [[Order alloc] init];
+    order.paymentAmmount = self.paymentAmmount;
+    order.selectedPaymentMethod = self.selectedPaymentMethod;
+    order.selectedCardIssuer = self.selectedCardIssuer;
+    order.selectedPayerCost = self.selectedPayerCost;
+    
+    self.currentOrder = order;
+    
     [self performSegueWithIdentifier:@"unWindToPaymentAmmount" sender:nil];
     
 }

@@ -41,7 +41,9 @@ NSString * cardIssuerCell = @"cardIssuerCell";
         self.cardIssuers = cardIssuers;
         
         if (self.cardIssuers.count <= 0){
-            [self.navigationController popViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

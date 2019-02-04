@@ -109,6 +109,8 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [NSURL URLWithString: [endpoint getStringEndpoint : dictionary]]];
     [request setHTTPMethod: endpoint.method];
     
+    NSLog(@"%@", request);
+    
     return request;
 }
 

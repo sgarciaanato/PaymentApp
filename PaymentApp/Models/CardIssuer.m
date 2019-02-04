@@ -18,9 +18,21 @@
         self.name = [data objectForKey:@"name"];
         self.secure_thumbnail = [data objectForKey:@"secure_thumbnail"];
         self.processing_mode = [data objectForKey:@"processing_mode"];
-        self.merchant_account_id = [data objectForKey:@"merchant_account_id"];
     }
     return self;
+}
+
+-(NSMutableDictionary *)getDictionary {
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    [dictionary setValue:self.id forKey:@"id"];
+    [dictionary setValue:self.name forKey:@"name"];
+    [dictionary setValue:self.secure_thumbnail forKey:@"secure_thumbnail"];
+    [dictionary setValue:self.processing_mode forKey:@"processing_mode"];
+    
+    return dictionary;
+    
 }
 
 @end

@@ -15,13 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *validation;
 @property (strong, nonatomic) NSNumber *length;
 
+-(NSMutableDictionary *) getDictionary;
+
 @end
 
 @interface Bin : NSObject
 
 @property (strong, nonatomic) NSString *pattern;
 @property (strong, nonatomic) NSString *installments_pattern;
-@property (strong, nonatomic) NSString *exclusion_pattern;
+
+-(NSMutableDictionary *) getDictionary;
 
 @end
 
@@ -30,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSNumber *length;
 @property (strong, nonatomic) NSString *card_location;
 @property (strong, nonatomic) NSString *mode;
+
+-(NSMutableDictionary *) getDictionary;
 
 @end
 
@@ -40,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) SecurityCode *security_code;
 
 -(id)initWithDictionary:(NSDictionary*)data;
+-(NSMutableDictionary *) getDictionary;
 
 @end
 
@@ -61,6 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) NSArray<NSString *> *processing_modes;
 
 -(id)initWithDictionary:(NSDictionary*)data;
+-(NSMutableDictionary *) getDictionary;
 
 @end
 

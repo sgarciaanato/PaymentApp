@@ -6,6 +6,7 @@ target 'PaymentApp' do
   # use_frameworks!
 
   # Pods for PaymentApp
-pod 'SDWebImage', '~> 4.0'
+  pod 'SDWebImage', '~> 4.0'
+  pod 'lottie-ios'
 
 end
