@@ -17,6 +17,8 @@
         self.selectedPaymentMethod = [[PaymentMethod alloc] initWithDictionary: [data objectForKey:@"selectedPaymentMethod"]];
         self.selectedCardIssuer = [[CardIssuer alloc] initWithDictionary: [data objectForKey:@"selectedCardIssuer"]];
         self.selectedPayerCost = [[PayerCost alloc] initWithDictionary: [data objectForKey:@"selectedPayerCost"]];
+        self.rate = [data objectForKey:@"rate"];
+        self.message = [data objectForKey:@"message"];
     }
     return self;
 }
@@ -29,6 +31,8 @@
     [dictionary setValue:self.selectedPaymentMethod.getDictionary forKey:@"selectedPaymentMethod"];
     [dictionary setValue:self.selectedCardIssuer.getDictionary forKey:@"selectedCardIssuer"];
     [dictionary setValue:self.selectedPayerCost.getDictionary forKey:@"selectedPayerCost"];
+    [dictionary setValue:self.rate forKey:@"rate"];
+    [dictionary setValue:self.message forKey:@"message"];
     
     return dictionary;
     

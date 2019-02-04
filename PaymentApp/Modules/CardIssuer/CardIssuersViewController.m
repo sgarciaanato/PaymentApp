@@ -42,6 +42,7 @@ NSString * cardIssuerCell = @"cardIssuerCell";
         
         if (self.cardIssuers.count <= 0){
             dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self showMessage:@"No se consiguieron Bancos"];
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }

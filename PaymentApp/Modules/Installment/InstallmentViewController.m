@@ -61,6 +61,7 @@ NSString * installmentCell = @"installmentCell";
         
         if (self.installment.payer_costs.count <= 0){
             dispatch_async(dispatch_get_main_queue(), ^(void){
+                [self showMessage:@"No se consiguieron Cuotas"];
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }

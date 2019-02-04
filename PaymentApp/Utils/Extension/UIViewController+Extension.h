@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void) showLoading;
 -(void) hideLoading;
+-(void) showMessage : (NSString *) message;
 -(void) animateEntry;
 
 @end

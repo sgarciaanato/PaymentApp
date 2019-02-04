@@ -1,22 +1,26 @@
 PODS:
+  - IQKeyboardManager (6.2.0)
   - lottie-ios (2.5.2)
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
 
 DEPENDENCIES:
+  - IQKeyboardManager
   - lottie-ios
   - SDWebImage (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - IQKeyboardManager
     - lottie-ios
     - SDWebImage
 
 SPEC CHECKSUMS:
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
   SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
 
-PODFILE CHECKSUM: 452e4ccbe1f302a8b015dc5265fc124f7c9f15ca
+PODFILE CHECKSUM: f75fce396d92ef64132076ab3d5efa376d4219af
 
 COCOAPODS: 1.6.0.beta.1

@@ -11,32 +11,45 @@
 @implementation UIViewController (Category)
 
 UIActivityIndicatorView *indicator;
-#ifdef __IPHONE_8_0
-// suppress these errors until we are ready to handle them
-#pragma clang diagnostic ignored "-Wobjc-designated-initializers"
-#else
-// temporarily define an empty NS_DESIGNATED_INITIALIZER so we can use now,
-// will be ready for iOS8 SDK
-#define NS_DESIGNATED_INITIALIZER
-#endif
+LOTAnimationView *animation;
 
 -(void) showLoading{
-    indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
-    indicator.center = self.view.center;
-    [self.view addSubview:indicator];
-    [indicator bringSubviewToFront:self.view];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
-    
+    animation = [LOTAnimationView animationNamed:@"loading"];
+    [animation setFrame:CGRectMake((self.view.frame.size.width / 2) - 100, (self.view.frame.size.height / 2) - 100, 200, 200)];
     dispatch_async(dispatch_get_main_queue(), ^(void){
-        [indicator startAnimating];
+        [self.view addSubview:animation];
+        [animation play];
     });
 }
 
 -(void) hideLoading{
     dispatch_async(dispatch_get_main_queue(), ^(void){
-        [indicator stopAnimating];
+        [animation stop];
+        [animation removeFromSuperview];
     });
+}
+
+-(void) showMessage : (NSString *) message{
+    CGRect startContainerFrame = CGRectMake(0, - 60, self.view.frame.size.width, 60);
+    CGRect finishContainerFrame = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    CGRect labelFrame = CGRectMake(0, 30, self.view.frame.size.width, 30);
+    UIView *containerView = [[UIView alloc] initWithFrame:startContainerFrame];
+    [containerView setBackgroundColor:UIColor.redColor];
+    UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
+    [label setTextAlignment:NSTextAlignmentCenter];
+    label.text = message;
+    [label setTextColor:UIColor.whiteColor];
+    [containerView addSubview:label];
+    [self.parentViewController.view addSubview:containerView];
+    
+    
+    [UIView animateWithDuration:0.4f animations:^{
+        [containerView setFrame:finishContainerFrame];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration: 0.4f delay: 2.0 options:UIViewAnimationOptionTransitionNone animations:^{
+            [containerView setFrame: startContainerFrame];
+        } completion:nil];
+    }];
 }
 
 -(void) animateEntry {

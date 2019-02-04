@@ -8,5 +8,6 @@ target 'PaymentApp' do
   # Pods for PaymentApp
   pod 'SDWebImage', '~> 4.0'
   pod 'lottie-ios'
+  pod 'IQKeyboardManager' #iOS8 and later
 
 end
