@@ -95,7 +95,6 @@
             return;
         }
         
-        
         Installment *installment = [[Installment alloc] initWithDictionary:jsonCardIssuer.firstObject];
         
         onSuccess(installment, err);

@@ -45,7 +45,7 @@
     
     [[self.containerView layer] setCornerRadius: 8];
     
-    [self.paymentAmmountLabel setText:[[NSString alloc] initWithFormat:@"Se pagó %@ $", self.currentOrder.paymentAmmount]];
+    [self.paymentAmmountLabel setText:[[NSString alloc] initWithFormat:@"Se pagó %@ $", [self.currentOrder.paymentAmmount stringByReplacingOccurrencesOfString:@"." withString:@","]]];
     
     [self.paymentMethodImageView sd_setImageWithURL:[NSURL URLWithString:self.currentOrder.selectedPaymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     

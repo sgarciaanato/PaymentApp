@@ -62,11 +62,22 @@
 
 }
 
+- (int)numberOfOccurencesOfSubstring:(NSString *)substring inString:(NSString*)string
+{
+    NSArray *components = [string componentsSeparatedByString:substring];
+    return (int)components.count-1; // Two substring will create 3 separated strings in the array.
+}
+
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     
     if ([identifier isEqualToString:@"goToPaymentMethod"] && ([self.ammountTextField.text  isEqual: @""] || self.ammountTextField.text.length <= 0)) {
         return false;
     }
+    if([self numberOfOccurencesOfSubstring:@"," inString:self.ammountTextField.text] > 1 || [self numberOfOccurencesOfSubstring:@"." inString:self.ammountTextField.text] > 1){
+        [self showMessage:@"Ingrese un monto válido"];
+        return false;
+    }
+    
     if ([identifier isEqualToString:@"goToOrders"] && ([OrderManager getCurrentOrders].count <= 0)) {
         [self showMessage:@"No tienes pagos para mostrar"];
         return false;
@@ -84,7 +95,7 @@
     if ([[segue identifier] isEqualToString:@"goToPaymentMethod"]) {
         
         PaymentMethodViewController *paymentMethodViewController = segue.destinationViewController;
-        paymentMethodViewController.paymentAmmount = self.ammountTextField.text;
+        paymentMethodViewController.paymentAmmount = [self.ammountTextField.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
         
         [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
         
