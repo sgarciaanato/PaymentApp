@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(void) storeOrder : (Order *) order;
 +(NSMutableArray <Order *> *) getCurrentOrders;
++(void) saveOrder : (Order *) updatedOrder;
 
 @end
 

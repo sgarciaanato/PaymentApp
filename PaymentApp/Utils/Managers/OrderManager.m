@@ -47,4 +47,21 @@ NSString *ordersArrayId = @"ordersArrayId";
     
 }
 
++(void) saveOrder : (Order *) updatedOrder {
+    
+    NSMutableArray<Order *> *orders = [OrderManager getCurrentOrders];
+    
+    NSUserDefaults *defautls = [NSUserDefaults standardUserDefaults];
+    NSMutableArray<NSMutableDictionary *> *ordersArray = [[NSMutableArray alloc] initWithArray:[defautls objectForKey:ordersArrayId]];
+    
+    for(Order *order in orders){
+        if(updatedOrder.id == order.id){
+            [ordersArray replaceObjectAtIndex:[orders indexOfObject:order] withObject:[updatedOrder getDictionary]];
+        }
+    }
+    
+    [defautls setObject:ordersArray forKey:ordersArrayId];
+    
+}
+
 @end

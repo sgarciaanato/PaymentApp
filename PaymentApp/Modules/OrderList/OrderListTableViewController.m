@@ -8,7 +8,7 @@
 
 #import "OrderListTableViewController.h"
 
-@interface OrderListTableViewController ()
+@interface OrderListTableViewController () <OrderDetailDelegate>
 
 @end
 
@@ -19,10 +19,26 @@ NSString * orderCell = @"orderCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier: orderCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListTableViewCell" bundle:nil]
+         forCellReuseIdentifier:orderCell];
      
     self.orders = [OrderManager getCurrentOrders];
     
+}
+
+-(void)updateOrder:(Order *)updatedOrder{
+    
+    NSArray<Order *> *orders = [OrderManager getCurrentOrders];
+    
+    [self.tableView beginUpdates];
+    for(Order *order in orders){
+        if(order.id == updatedOrder.id){
+            //NSIndexPath *index = [[NSIndexPath alloc] initWithIndex: [orders indexOfObject:order]];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[orders indexOfObject:order] inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        }
+    }
+    [self.tableView endUpdates];
 }
 
 #pragma mark - Table view data source
@@ -39,15 +55,38 @@ NSString * orderCell = @"orderCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:orderCell forIndexPath:indexPath];
+    OrderListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:orderCell forIndexPath:indexPath];
     
     Order *order = [self.orders objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = order.selectedPayerCost.recommended_message;
+    cell.recommendedMessageLabel.text = order.selectedPayerCost.recommended_message;
+    [cell.paymentMethodImageView sd_setImageWithURL:[NSURL URLWithString:order.selectedPaymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [cell.paymentMethodLabel setText:order.selectedPaymentMethod.name];
+    
+    [cell.cardIssuerImageView sd_setImageWithURL:[NSURL URLWithString:order.selectedCardIssuer.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    
+    [cell.cardIssuerLabel setText:order.selectedCardIssuer.name];
+    [cell.recommendedMessageLabel setText:order.selectedPayerCost.recommended_message];
+    
+    if(order.rate == nil){
+        [cell.rateImageView setImage:[UIImage imageNamed:@"icon-empty-star"]];
+        [cell.rateLabel setText:@"-"];
+    }else{
+        if([order.rate intValue] == 5){
+            [cell.rateImageView setImage:[UIImage imageNamed:@"icon-full-star"]];
+        }else{
+            [cell.rateImageView setImage:[UIImage imageNamed:@"icon-half-star"]];
+        }
+        [cell.rateLabel setText: [[NSString alloc] initWithFormat:@"%@", order.rate]];
+    }
     
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 130;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -55,6 +94,7 @@ NSString * orderCell = @"orderCell";
     if ([[segue identifier] isEqualToString:@"goToOrderDetail"]) {
         
         OrderDetailViewController *orderDetailViewController = segue.destinationViewController;
+        orderDetailViewController.delegate = self;
         orderDetailViewController.currentOrder = self.selectedOrder;
         
         return;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderDetailViewController.h"
+#import "orderListTableViewCell.h"
 #import "OrderManager.h"
 #import "Order.h"
 
