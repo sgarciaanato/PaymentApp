@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIView *containerView;
 @property (weak, nonatomic) IBOutlet UITextField *ammountTextField;
 @property (weak, nonatomic) IBOutlet UIButton *paymentButton;
+@property (weak, nonatomic) IBOutlet UIButton *paymentHistory;
 
 @end
 
@@ -25,8 +26,13 @@
     [[self.paymentButton layer] setCornerRadius: 8];
     [[self.paymentButton layer] setBorderWidth: 1];
     [[self.paymentButton layer] setBorderColor: UIColor.lightGrayColor.CGColor];
+    [[self.paymentHistory layer] setCornerRadius: 8];
+    [[self.paymentHistory layer] setBorderWidth: 1];
+    [[self.paymentHistory layer] setBorderColor: UIColor.lightGrayColor.CGColor];
     
-    [self animateEntry];
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self animateEntry];
+    });
     
 }
 
@@ -57,6 +63,7 @@
         return false;
     }
     if ([identifier isEqualToString:@"goToOrders"] && ([OrderManager getCurrentOrders].count <= 0)) {
+        [self showMessage:@"No tienes pagos para mostrar"];
         return false;
     }
     return true;

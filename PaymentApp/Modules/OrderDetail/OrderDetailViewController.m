@@ -77,9 +77,9 @@
 -(void) placeStars : (int) rate {
     for(UIButton *button in _buttonsArray){
         if(button.tag <= rate){
-            [button setImage: [UIImage imageNamed:@"icon-full-star"] forState:UIControlStateNormal];
+            [button setImage: [UIImage imageNamed:@"icon-5-star"] forState:UIControlStateNormal];
         }else{
-            [button setImage: [UIImage imageNamed:@"icon-empty-star"] forState:UIControlStateNormal];
+            [button setImage: [UIImage imageNamed:@"icon-0-star"] forState:UIControlStateNormal];
         }
     }
 }

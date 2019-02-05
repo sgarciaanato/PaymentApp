@@ -30,10 +30,11 @@ LOTAnimationView *animation;
 }
 
 -(void) showMessage : (NSString *) message{
-    CGRect startContainerFrame = CGRectMake(0, - 60, self.view.frame.size.width, 60);
-    CGRect finishContainerFrame = CGRectMake(0, 0, self.view.frame.size.width, 60);
-    CGRect labelFrame = CGRectMake(0, 30, self.view.frame.size.width, 30);
+    CGRect startContainerFrame = CGRectMake((self.view.frame.size.width - 300 ) / 2, - 100, 300, 100);
+    CGRect finishContainerFrame = CGRectMake((self.view.frame.size.width - 300 ) / 2, (self.view.frame.size.height - 100 ) / 2, 300, 100);
+    CGRect labelFrame = CGRectMake(0, 30, 300, 40);
     UIView *containerView = [[UIView alloc] initWithFrame:startContainerFrame];
+    [containerView.layer setCornerRadius:8];
     [containerView setBackgroundColor:UIColor.redColor];
     UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
     [label setTextAlignment:NSTextAlignmentCenter];
@@ -54,9 +55,15 @@ LOTAnimationView *animation;
 
 -(void) animateEntry {
     
+    CGFloat statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+
+    if(statusBarHeight != 20){
+        return;
+    }
+    
     __block CGFloat timer = 0.5f;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^(void){
         
         NSMutableArray <UIView*> *arraySubViews = [self getArraySubViews:self.view parentArrayView:[[NSMutableArray alloc] init]];
         

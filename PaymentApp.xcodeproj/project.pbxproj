@@ -11,6 +11,8 @@
 		7E372DEA22085027004A057F /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E372DE922085027004A057F /* loading.json */; };
 		7E372DEF2209A8D2004A057F /* OrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E372DED2209A8D1004A057F /* OrderListTableViewCell.m */; };
 		7E372DF02209A8D2004A057F /* OrderListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E372DEE2209A8D1004A057F /* OrderListTableViewCell.xib */; };
+		7E372DF52209C35B004A057F /* DefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E372DF32209C35B004A057F /* DefaultTableViewCell.m */; };
+		7E372DF62209C35B004A057F /* DefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E372DF42209C35B004A057F /* DefaultTableViewCell.xib */; };
 		7E4BE4352206575400302243 /* OrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4BE4342206575400302243 /* OrderDetailViewController.m */; };
 		7E4C9B6C2203DD7200D42EF4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C9B6B2203DD7200D42EF4 /* AppDelegate.m */; };
 		7E4C9B722203DD7200D42EF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E4C9B702203DD7200D42EF4 /* Main.storyboard */; };
@@ -41,6 +43,9 @@
 		7E372DEC2209A8D1004A057F /* OrderListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderListTableViewCell.h; sourceTree = "<group>"; };
 		7E372DED2209A8D1004A057F /* OrderListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderListTableViewCell.m; sourceTree = "<group>"; };
 		7E372DEE2209A8D1004A057F /* OrderListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderListTableViewCell.xib; sourceTree = "<group>"; };
+		7E372DF22209C35B004A057F /* DefaultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultTableViewCell.h; sourceTree = "<group>"; };
+		7E372DF32209C35B004A057F /* DefaultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultTableViewCell.m; sourceTree = "<group>"; };
+		7E372DF42209C35B004A057F /* DefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultTableViewCell.xib; sourceTree = "<group>"; };
 		7E4BE4332206575400302243 /* OrderDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailViewController.h; sourceTree = "<group>"; };
 		7E4BE4342206575400302243 /* OrderDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailViewController.m; sourceTree = "<group>"; };
 		7E4BE43922066C4800302243 /* UIViewController+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
@@ -131,6 +136,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		7E372DF12209C342004A057F /* DefaultCell */ = {
+			isa = PBXGroup;
+			children = (
+				7E372DF22209C35B004A057F /* DefaultTableViewCell.h */,
+				7E372DF32209C35B004A057F /* DefaultTableViewCell.m */,
+				7E372DF42209C35B004A057F /* DefaultTableViewCell.xib */,
+			);
+			path = DefaultCell;
+			sourceTree = "<group>";
+		};
 		7E4BE4322206573F00302243 /* OrderDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +215,7 @@
 		7E4C9B832203DE8500D42EF4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7E372DF12209C342004A057F /* DefaultCell */,
 				7EAC54B4220757F500C367F1 /* OrderList */,
 				7E4BE4322206573F00302243 /* OrderDetail */,
 				7E80094322051D1D00DE71C7 /* Installment */,
@@ -363,6 +379,7 @@
 				7E4C9B7A2203DD7300D42EF4 /* LaunchScreen.storyboard in Resources */,
 				7E4C9B772203DD7300D42EF4 /* Assets.xcassets in Resources */,
 				7E372DEA22085027004A057F /* loading.json in Resources */,
+				7E372DF62209C35B004A057F /* DefaultTableViewCell.xib in Resources */,
 				7E4C9B722203DD7200D42EF4 /* Main.storyboard in Resources */,
 				7E372DF02209A8D2004A057F /* OrderListTableViewCell.xib in Resources */,
 			);
@@ -435,6 +452,7 @@
 				7E80094922051DC900DE71C7 /* InstallmentViewController.m in Sources */,
 				7E4C9BB12204D99D00D42EF4 /* CardIssuer.m in Sources */,
 				7E4C9B9F2204772700D42EF4 /* PaymentAmmountViewController.m in Sources */,
+				7E372DF52209C35B004A057F /* DefaultTableViewCell.m in Sources */,
 				7E372DEF2209A8D2004A057F /* OrderListTableViewCell.m in Sources */,
 				7E800942220516B900DE71C7 /* Installment.m in Sources */,
 				7EAC54B32207396A00C367F1 /* OrderManager.m in Sources */,

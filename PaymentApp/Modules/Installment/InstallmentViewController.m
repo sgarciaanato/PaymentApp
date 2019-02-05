@@ -32,6 +32,8 @@ NSString * installmentCell = @"installmentCell";
     [super viewDidLoad];
     
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier: installmentCell];
+    self.tableView.tableFooterView = [UIView new];
+    [self setTitle:@"Seleccione n° de cuotas"];
     
     NSDictionary *parameters = @{
                                  @"amount":self.paymentAmmount,
@@ -43,7 +45,7 @@ NSString * installmentCell = @"installmentCell";
     [[self.tableView layer] setBorderWidth:1];
     [[self.tableView layer] setBorderColor:UIColor.lightGrayColor.CGColor];
     
-    [self.paymentCostLabel setText:[[NSString alloc] initWithFormat:@"Por pagar %@ $",self.paymentAmmount]];
+    [self.paymentCostLabel setText:[[NSString alloc] initWithFormat:@"Total a pagar %@ $",self.paymentAmmount]];
     [self.paymentMethodImageView sd_setImageWithURL:[NSURL URLWithString:self.selectedPaymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [self.paymentMethodLabel setText:self.self.selectedPaymentMethod.name];
     [self.cardIssuerImageView sd_setImageWithURL:[NSURL URLWithString:self.selectedCardIssuer.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];

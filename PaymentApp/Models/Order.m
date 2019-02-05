@@ -15,6 +15,9 @@
     if (self) {
         NSUUID *uuid = [NSUUID UUID];
         self.id = [uuid UUIDString];
+        NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        self.date = [dateFormatter stringFromDate:[NSDate date]];
     }
     return self;
 }
@@ -28,6 +31,7 @@
         self.selectedCardIssuer = [[CardIssuer alloc] initWithDictionary: [data objectForKey:@"selectedCardIssuer"]];
         self.selectedPayerCost = [[PayerCost alloc] initWithDictionary: [data objectForKey:@"selectedPayerCost"]];
         self.rate = [data objectForKey:@"rate"];
+        self.date = [data objectForKey:@"date"];
     }
     return self;
 }
@@ -42,6 +46,7 @@
     [dictionary setValue:self.selectedCardIssuer.getDictionary forKey:@"selectedCardIssuer"];
     [dictionary setValue:self.selectedPayerCost.getDictionary forKey:@"selectedPayerCost"];
     [dictionary setValue:self.rate forKey:@"rate"];
+    [dictionary setValue:self.date forKey:@"date"];
     
     return dictionary;
     

@@ -12,6 +12,7 @@
 #import "PaymentMethod.h"
 #import "CardIssuer.h"
 #import "InstallmentViewController.h"
+#import "DefaultTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong,nonatomic) CardIssuer *selectedCardIssuer;
 @property (strong,nonatomic) PayerCost *selectedPayerCost;
 @property (strong,nonatomic) NSNumber *rate;
+@property (strong,nonatomic) NSString *date;
 
 -(id)initWithDictionary:(NSDictionary*)data;
 -(NSMutableDictionary *) getDictionary;

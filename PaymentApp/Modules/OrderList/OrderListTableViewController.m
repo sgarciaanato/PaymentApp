@@ -21,6 +21,7 @@ NSString * orderCell = @"orderCell";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"OrderListTableViewCell" bundle:nil]
          forCellReuseIdentifier:orderCell];
+    self.tableView.tableFooterView = [UIView new];
      
     self.orders = [OrderManager getCurrentOrders];
     
@@ -66,17 +67,14 @@ NSString * orderCell = @"orderCell";
     [cell.cardIssuerImageView sd_setImageWithURL:[NSURL URLWithString:order.selectedCardIssuer.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     [cell.cardIssuerLabel setText:order.selectedCardIssuer.name];
+    [cell.dateLabel setText:order.date];
     [cell.recommendedMessageLabel setText:order.selectedPayerCost.recommended_message];
     
     if(order.rate == nil){
-        [cell.rateImageView setImage:[UIImage imageNamed:@"icon-empty-star"]];
-        [cell.rateLabel setText:@"-"];
+        [cell.rateImageView setImage:[UIImage imageNamed:@"icon-0-star"]];
+        [cell.rateLabel setText:@""];
     }else{
-        if([order.rate intValue] == 5){
-            [cell.rateImageView setImage:[UIImage imageNamed:@"icon-full-star"]];
-        }else{
-            [cell.rateImageView setImage:[UIImage imageNamed:@"icon-half-star"]];
-        }
+        [cell.rateImageView setImage:[UIImage imageNamed:[[NSString alloc] initWithFormat:@"icon-%i-star",[order.rate intValue]]]];
         [cell.rateLabel setText: [[NSString alloc] initWithFormat:@"%@", order.rate]];
     }
     

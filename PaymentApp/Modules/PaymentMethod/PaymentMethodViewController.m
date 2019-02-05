@@ -17,13 +17,17 @@
 
 @implementation PaymentMethodViewController
 
-NSString * paymentMethodCell = @"paymentMethodCell";
+NSString * paymentMethodCell = @"defaultTableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier: paymentMethodCell];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DefaultTableViewCell" bundle:nil]
+         forCellReuseIdentifier:paymentMethodCell];
+    self.tableView.tableFooterView = [UIView new];
+    
+    [self setTitle:@"Seleccione tipo de tarjeta"];
     
     NSDictionary *parameters = @{};
     
@@ -51,6 +55,10 @@ NSString * paymentMethodCell = @"paymentMethodCell";
     return self.paymentMethods.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.selectedPaymentMethod = [self.paymentMethods objectAtIndex:indexPath.row];
@@ -60,16 +68,18 @@ NSString * paymentMethodCell = @"paymentMethodCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:paymentMethodCell forIndexPath:indexPath];
+    DefaultTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:paymentMethodCell forIndexPath:indexPath];
     
     PaymentMethod *paymentMethod = [self.paymentMethods objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = paymentMethod.name;
+    cell.defaultTextLabel.text = paymentMethod.name;
     
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:paymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    
+    [cell.defaultImageView sd_setImageWithURL:[NSURL URLWithString:paymentMethod.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (cacheType != SDImageCacheTypeMemory){
             [self.tableView reloadRowsAtIndexPaths:[[NSArray alloc] initWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
         }
+        
     }];
     
     return cell;
