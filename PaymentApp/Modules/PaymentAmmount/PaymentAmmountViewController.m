@@ -70,7 +70,18 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     
-    if ([identifier isEqualToString:@"goToPaymentMethod"] && ([self.ammountTextField.text  isEqual: @""] || self.ammountTextField.text.length <= 0)) {
+    if ([identifier isEqualToString:@"goToOrders"] && ([OrderManager getCurrentOrders].count <= 0)) {
+        [self showMessage:@"No tienes pagos para mostrar"];
+        return false;
+    }else if ([identifier isEqualToString:@"goToPaymentMethod"]) {
+        return [self evaluateAmmount];
+    }
+    return true;
+}
+
+-(Boolean) evaluateAmmount {
+    
+    if ([self.ammountTextField.text  isEqual: @""] || self.ammountTextField.text.length <= 0) {
         return false;
     }
     if([self numberOfOccurencesOfSubstring:@"," inString:self.ammountTextField.text] > 1 || [self numberOfOccurencesOfSubstring:@"." inString:self.ammountTextField.text] > 1){
@@ -78,10 +89,11 @@
         return false;
     }
     
-    if ([identifier isEqualToString:@"goToOrders"] && ([OrderManager getCurrentOrders].count <= 0)) {
-        [self showMessage:@"No tienes pagos para mostrar"];
+    if([[self.ammountTextField.text stringByReplacingOccurrencesOfString:@"," withString:@"."] floatValue] <= 0.01){
+        [self showMessage:@"Ingrese un monto válido"];
         return false;
     }
+    
     return true;
 }
 
