@@ -22,6 +22,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setUpButtons];
+    
+    dispatch_async(dispatch_get_main_queue(), ^(void){
+        [self animateEntry];
+    });
+    
+}
+
+-(void) setUpButtons {
+    
     [[self.containerView layer] setCornerRadius: 8];
     [[self.paymentButton layer] setCornerRadius: 8];
     [[self.paymentButton layer] setBorderWidth: 1];
@@ -29,11 +39,6 @@
     [[self.paymentHistory layer] setCornerRadius: 8];
     [[self.paymentHistory layer] setBorderWidth: 1];
     [[self.paymentHistory layer] setBorderColor: UIColor.lightGrayColor.CGColor];
-    
-    dispatch_async(dispatch_get_main_queue(), ^(void){
-        [self animateEntry];
-    });
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated{

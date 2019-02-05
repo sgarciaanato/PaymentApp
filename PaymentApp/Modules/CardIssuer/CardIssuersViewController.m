@@ -24,10 +24,20 @@ NSString * cardIssuerCellIdentifier = @"defaultTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpView];
+    [self fetchRequest];
+}
+
+-(void) setUpView {
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"DefaultTableViewCell" bundle:nil]
          forCellReuseIdentifier:cardIssuerCellIdentifier];
     self.tableView.tableFooterView = [UIView new];
     [self setTitle:@"Seleccione Banco"];
+    
+}
+
+-(void) fetchRequest {
     
     NSDictionary *parameters = @{@"payment_method_id": self.selectedPaymentMethod.id};
     
@@ -55,6 +65,7 @@ NSString * cardIssuerCellIdentifier = @"defaultTableViewCell";
         });
         
     }];
+    
 }
 
 #pragma mark - Table view data source

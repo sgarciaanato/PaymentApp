@@ -14,7 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol OrderDetailDelegate<NSObject>
--(void)updateOrder:(Order *)orupdatedOrderder;
+-(void)updateOrder:(Order *)updatedOrder;
 @end
 
 @interface OrderDetailViewController : UIViewController
@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Order *currentOrder;
 
 @property(weak,nonatomic)id<OrderDetailDelegate> delegate;
--(void)updateOrder:(Order *)updatedOrder;
 
 @end
 

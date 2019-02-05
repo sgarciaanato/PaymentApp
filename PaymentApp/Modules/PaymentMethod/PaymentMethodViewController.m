@@ -23,11 +23,22 @@ NSString * paymentMethodCell = @"defaultTableViewCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setUpView];
+    [self fetchRequest];
+    
+}
+
+-(void) setUpView {
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"DefaultTableViewCell" bundle:nil]
          forCellReuseIdentifier:paymentMethodCell];
     self.tableView.tableFooterView = [UIView new];
     
     [self setTitle:@"Seleccione tipo de tarjeta"];
+    
+}
+
+-(void)fetchRequest {
     
     NSDictionary *parameters = @{};
     

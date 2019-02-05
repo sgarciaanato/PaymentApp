@@ -31,16 +31,15 @@ NSString * installmentCell = @"installmentCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpView];
+    [self fetchRequest];
+}
+
+-(void) setUpView{
+    
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier: installmentCell];
     self.tableView.tableFooterView = [UIView new];
     [self setTitle:@"Seleccione n° de cuotas"];
-    
-    NSDictionary *parameters = @{
-                                 @"amount":self.paymentAmmount,
-                                 @"payment_method_id": self.selectedPaymentMethod.id,
-                                 @"issuer.id":self.selectedCardIssuer.id
-                                 };
-    [self showLoading];
     
     [[self.tableView layer] setBorderWidth:1];
     [[self.tableView layer] setBorderColor:UIColor.lightGrayColor.CGColor];
@@ -51,8 +50,19 @@ NSString * installmentCell = @"installmentCell";
     [self.cardIssuerImageView sd_setImageWithURL:[NSURL URLWithString:self.selectedCardIssuer.secure_thumbnail] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [self.cardIssuerLabel setText:self.selectedCardIssuer.name];
     
+}
+
+-(void) fetchRequest {
+    
+    NSDictionary *parameters = @{
+                                 @"amount":self.paymentAmmount,
+                                 @"payment_method_id": self.selectedPaymentMethod.id,
+                                 @"issuer.id":self.selectedCardIssuer.id
+                                 };
+    [self showLoading];
+    
     [NetworkingManager getInstallment : parameters onSuccess : ^(Installment *installment, NSError *error) {
-         
+        
         [self hideLoading];
         
         if (error){
@@ -73,6 +83,7 @@ NSString * installmentCell = @"installmentCell";
         });
         
     }];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

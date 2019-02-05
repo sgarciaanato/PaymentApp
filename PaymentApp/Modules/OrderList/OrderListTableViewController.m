@@ -19,12 +19,17 @@ NSString * orderCell = @"orderCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListTableViewCell" bundle:nil]
-         forCellReuseIdentifier:orderCell];
-    self.tableView.tableFooterView = [UIView new];
+    [self setUpView];
      
     self.orders = [OrderManager getCurrentOrders];
     
+}
+
+-(void) setUpView {
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"OrderListTableViewCell" bundle:nil]
+         forCellReuseIdentifier:orderCell];
+    self.tableView.tableFooterView = [UIView new];
 }
 
 -(void)updateOrder:(Order *)updatedOrder{
@@ -49,7 +54,7 @@ NSString * orderCell = @"orderCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    NSLog(@"Click");
     self.selectedOrder = [self.orders objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"goToOrderDetail" sender:nil];
     
@@ -94,6 +99,7 @@ NSString * orderCell = @"orderCell";
         OrderDetailViewController *orderDetailViewController = segue.destinationViewController;
         orderDetailViewController.delegate = self;
         orderDetailViewController.currentOrder = self.selectedOrder;
+        NSLog(@"Go");
         
         return;
     }
