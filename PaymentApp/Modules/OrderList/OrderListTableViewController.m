@@ -54,9 +54,9 @@ NSString * orderCell = @"orderCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"Click");
     self.selectedOrder = [self.orders objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"goToOrderDetail" sender:nil];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 
@@ -83,8 +83,6 @@ NSString * orderCell = @"orderCell";
         [cell.rateLabel setText: [[NSString alloc] initWithFormat:@"%@", order.rate]];
     }
     
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
     return cell;
 }
 
@@ -99,7 +97,6 @@ NSString * orderCell = @"orderCell";
         OrderDetailViewController *orderDetailViewController = segue.destinationViewController;
         orderDetailViewController.delegate = self;
         orderDetailViewController.currentOrder = self.selectedOrder;
-        NSLog(@"Go");
         
         return;
     }

@@ -18,6 +18,7 @@ LOTAnimationView *animation;
     [animation setFrame:CGRectMake((self.view.frame.size.width / 2) - 100, (self.view.frame.size.height / 2) - 100, 200, 200)];
     dispatch_async(dispatch_get_main_queue(), ^(void){
         [self.view addSubview:animation];
+        [animation setLoopAnimation:true];
         [animation play];
     });
 }
